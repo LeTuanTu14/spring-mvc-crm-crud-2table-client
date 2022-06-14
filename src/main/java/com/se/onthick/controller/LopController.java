@@ -1,0 +1,26 @@
+package com.se.onthick.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import com.se.onthick.model.Lop;
+import com.se.onthick.service.LopService;
+
+@Controller
+public class LopController {
+	
+	@Autowired
+	private LopService lopService;
+	
+	@GetMapping("/")
+	public String homeLop(Model theModel) {
+		List<Lop> lop= lopService.getLop();
+		theModel.addAttribute("customers", lop);
+		
+		return "list-lop";
+	}
+}
